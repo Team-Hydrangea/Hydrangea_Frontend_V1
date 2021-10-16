@@ -3122,6 +3122,38 @@ __metadata:
   languageName: node
   linkType: hard
 
+"Hydrangea@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "Hydrangea@workspace:."
+  dependencies:
+    "@emotion/css": ^11.1.3
+    "@emotion/react": ^11.4.1
+    "@emotion/styled": ^11.3.0
+    "@testing-library/jest-dom": ^5.11.4
+    "@testing-library/react": ^11.1.0
+    "@testing-library/user-event": ^12.1.10
+    "@types/jest": ^26.0.15
+    "@types/node": ^12.0.0
+    "@types/react": ^17.0.0
+    "@types/react-dom": ^17.0.0
+    "@types/react-redux": ^7.1.19
+    "@types/redux-actions": ^2.6.2
+    eslint-config-react-app: ^6.0.0
+    react: ^17.0.2
+    react-app: ^1.1.2
+    react-dom: ^17.0.2
+    react-kakao-maps-sdk: ^1.0.1
+    react-redux: ^7.2.5
+    react-router: ^5.2.1
+    react-router-dom: ^5.3.0
+    react-scripts: 4.0.3
+    redux: ^4.1.1
+    redux-actions: ^2.6.5
+    typescript: ^4.1.2
+    web-vitals: ^1.0.1
+  languageName: unknown
+  linkType: soft
+
 "abab@npm:^2.0.3":
   version: 2.0.5
   resolution: "abab@npm:2.0.5"
@@ -7877,37 +7909,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"hyd@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "hyd@workspace:."
-  dependencies:
-    "@emotion/css": ^11.1.3
-    "@emotion/react": ^11.4.1
-    "@emotion/styled": ^11.3.0
-    "@testing-library/jest-dom": ^5.11.4
-    "@testing-library/react": ^11.1.0
-    "@testing-library/user-event": ^12.1.10
-    "@types/jest": ^26.0.15
-    "@types/node": ^12.0.0
-    "@types/react": ^17.0.0
-    "@types/react-dom": ^17.0.0
-    "@types/react-redux": ^7.1.19
-    "@types/redux-actions": ^2.6.2
-    eslint-config-react-app: ^6.0.0
-    react: ^17.0.2
-    react-app: ^1.1.2
-    react-dom: ^17.0.2
-    react-redux: ^7.2.5
-    react-router: ^5.2.1
-    react-router-dom: ^5.3.0
-    react-scripts: 4.0.3
-    redux: ^4.1.1
-    redux-actions: ^2.6.5
-    typescript: ^4.1.2
-    web-vitals: ^1.0.1
-  languageName: unknown
-  linkType: soft
-
 "iconv-lite@npm:0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -9457,6 +9458,13 @@ fsevents@^1.2.7:
   version: 3.2.1
   resolution: "just-curry-it@npm:3.2.1"
   checksum: 21b7bd6aaccfc908a89d16238f6b05408fd83a0489269ca5068bf99bcbc4e98c92afc368d86c64769be8c98580aabf822e00bb4c5c372d1a60619404a92cfbe0
+  languageName: node
+  linkType: hard
+
+"kakao.maps.d.ts@npm:^0.1.23":
+  version: 0.1.23
+  resolution: "kakao.maps.d.ts@npm:0.1.23"
+  checksum: ddc2f19700e085757d3fc6ff46ce0f09cf4f2f9e718afcc580ef3b6d068178e84ad37e316c335b634f415833c9a71b75007c8e58dba9f98b359f887c4e5a70ad
   languageName: node
   linkType: hard
 
@@ -12499,6 +12507,18 @@ fsevents@^1.2.7:
   version: 17.0.1
   resolution: "react-is@npm:17.0.1"
   checksum: 5e6945a286367894d11b24f41a0065607ba62bdac0df0b567294b2e299c037e3641434e66f9be30536b8c47f7ad94d44e633feb2ba25959c2c42423844e6c2f1
+  languageName: node
+  linkType: hard
+
+"react-kakao-maps-sdk@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "react-kakao-maps-sdk@npm:1.0.1"
+  dependencies:
+    kakao.maps.d.ts: ^0.1.23
+  peerDependencies:
+    react: ">=17.0.2 || >=16.9.0"
+    react-dom: ">=17.0.2 || >=16.9.0"
+  checksum: 102cd79bc152df06d45624b796d6cf39012ab57f74da980dde1029c64e4d70eeb127f0b300b0190c1ad079c6deee6a89fe662c1ecc2a67303d31c17e885a77ee
   languageName: node
   linkType: hard
 
