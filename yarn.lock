@@ -7651,7 +7651,9 @@ fsevents@^1.2.7:
     "@types/node": ^12.0.0
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
+    eslint-config-react-app: ^6.0.0
     react: ^17.0.2
+    react-app: ^1.1.2
     react-dom: ^17.0.2
     react-scripts: 4.0.3
     typescript: ^4.1.2
@@ -12130,6 +12132,15 @@ fsevents@^1.2.7:
     regenerator-runtime: ^0.13.7
     whatwg-fetch: ^3.4.1
   checksum: 99e52a6b2229c7ca730cfd44ac95640f955be71d144225bd6c24fa47922a742658a371d0a2f0876d732533f1055b7cd7e9d534c89c29f8ca889ecd1b8d15f065
+  languageName: node
+  linkType: hard
+
+"react-app@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "react-app@npm:1.1.2"
+  bin:
+    react-app: ./bin/react-app.js
+  checksum: 38106570973f035ad1f25e0027fc0b5ec19d71bf9a713d9a2ed14a25b0d44f880443dcbd1ed742d0f138f2bc7416617c70095e9cce005dc8d33abffd62ba1ca3
   languageName: node
   linkType: hard
 
