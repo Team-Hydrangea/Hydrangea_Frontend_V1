@@ -42,18 +42,37 @@ const CityPolygon = () => {
         });
         setAreas(area)
     },[])
+    const gwangju = areas.filter((i) => i.circuitName === '광주광역시')[0];
 
     return (
         <>
             {areas.map((data, index) => (
                 <Polygon
                     key={`area-${data.circuitName}`}
-                    path={data.path}
+                    path={data.circuitName === '전라남도' ? [data.path, gwangju.path] : data.path}
                     fillColor={data.isMouseOver ? "#09f" : "#fff"}
                     strokeWeight={2}
                     strokeColor={"#004c80"}
                     strokeOpacity={0.8}
                     fillOpacity={0.7}
+                    onMouseover={() =>
+                        setAreas((prev) => [
+                          ...prev.filter((_, i) => i !== index),
+                          {
+                            ...prev[index],
+                            isMouseOver: true,
+                          },
+                        ])
+                      }
+                    onMouseout={() =>
+                        setAreas((prev) => [
+                            ...prev.filter((_, i) => i !== index),
+                            {
+                            ...prev[index],
+                            isMouseOver: false,
+                            },
+                        ])
+                    }
                 />
             ))}
         </>
