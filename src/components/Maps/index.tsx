@@ -4,13 +4,25 @@ import { data as polygon } from '../../Data/CityData'
 import CityPolygon from './CityPolygon';
 import SigPolygon from './SigPolygon';
 
+interface IMapData {
+    level: number,
+    center: {
+        Ma: number,
+        La: number
+    } | any
+
+}
+
 const Maps = () => {
-    const [ level, setLevel ] = useState<any>(12)
-    console.log(level)
+    const [ mapData, setMapData ] = useState<IMapData>({
+        level: 12,
+        center: {Ma: 37.566826, La: 126.9786567},
+    })
+    const [ map, setMap ] = useState<any>()
 
     return (
         <>
-            <Map // 지도를 표시할 Container
+            <Map
                 id={`map`}
                 center={{
                     lat: 37.566826,
@@ -20,13 +32,17 @@ const Maps = () => {
                     width: "100%",
                     height: "100vh",
                 }}
-                level={level}
-                onZoomChanged={(map) => setLevel(map.getLevel())}
+                level={mapData.level}
+                onCenterChanged={(map) => setMapData({
+                    level: map.getLevel(),
+                    center: map.getCenter()
+                  })}
+                onCreate={setMap}
             >
                 {
-                    level < 9 ?
+                    mapData.level < 9 ?
                     null
-                    :   level > 10 ?
+                    :   mapData.level > 10 ?
                         <CityPolygon />
                         : <SigPolygon />
                 }
