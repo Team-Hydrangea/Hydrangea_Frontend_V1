@@ -6,8 +6,8 @@ interface ICityData {
     circuitName: string,
     isMouseOver: boolean,
     path: {
-        lat: any;
-        lng: any;
+        lat: number;
+        lng: number;
     }[]
 }
 
@@ -19,7 +19,7 @@ const CityPolygon = () => {
         let area: any[] = []
 
         data.forEach((data: any) => {
-            let coordinate: { lat: any; lng: any; }[] = []
+            let coordinate: { lat: number; lng: number; }[] = []
             let eachLength = data.geometry.coordinates.map((x: string | any[]) => x.length)
             let maxNum = Math.max(...eachLength);
             let where = eachLength.indexOf(maxNum);
@@ -34,14 +34,10 @@ const CityPolygon = () => {
                     path: coordinate
                 }
             )
-            // setAreas([...areas, {
-            //     name: data.properties.CTP_KOR_NM, 
-            //     isMouseover: false,
-            //     path: coordinate,
-            // }])
         });
         setAreas(area)
     },[])
+
     const gwangju = areas.filter((i) => i.circuitName === '광주광역시')[0];
 
     return (
