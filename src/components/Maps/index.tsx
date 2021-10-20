@@ -1,30 +1,52 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Map, Polygon, CustomOverlayMap, MapInfoWindow } from 'react-kakao-maps-sdk'
 import { data as polygon } from '../../Data/CityData'
 import CityPolygon from './CityPolygon';
 import SigPolygon from './SigPolygon';
 
+interface IMapData {
+    level: number,
+    center: {
+        Ma: number,
+        La: number
+    } | any
+
+}
+
 const Maps = () => {
+    const [ mapData, setMapData ] = useState<IMapData>({
+        level: 12,
+        center: {Ma: 37.566826, La: 126.9786567},
+    })
+    const [ map, setMap ] = useState<any>()
 
     return (
         <>
-            <Map // 지도를 표시할 Container
-            id={`map`}
-            center={{
-            // 지도의 중심좌표
-            lat: 37.566826,
-            lng: 126.9786567,
-            }}
-            style={{
-            // 지도의 크기
-            width: "100%",
-            height: "100vh",
-            }}
-            level={12}
-        >
-            {/* <CityPolygon /> */}
-            <SigPolygon />
-        </Map>
+            <Map
+                id={`map`}
+                center={{
+                    lat: 37.566826,
+                    lng: 126.9786567,
+                }}
+                style={{
+                    width: "100%",
+                    height: "100vh",
+                }}
+                level={mapData.level}
+                onCenterChanged={(map) => setMapData({
+                    level: map.getLevel(),
+                    center: map.getCenter()
+                  })}
+                onCreate={setMap}
+            >
+                {
+                    mapData.level < 9 ?
+                    null
+                    :   mapData.level > 10 ?
+                        <CityPolygon />
+                        : <SigPolygon />
+                }
+            </Map>
         </>
     );
 }
