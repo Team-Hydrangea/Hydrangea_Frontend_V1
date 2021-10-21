@@ -1,5 +1,5 @@
 import React from 'react';
-import { Restaurant, VacationSpot } from '../../../assets'
+import { Restaurant, VacationSpot } from '../../../assets/Marker'
 import { MapMarker } from 'react-kakao-maps-sdk';
 
 
