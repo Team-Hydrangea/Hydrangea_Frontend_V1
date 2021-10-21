@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import * as S from './style';
 import PictureSlider from './PictureSlider';
-import { emptyStar, fullStar, blackStar } from '../../Assets/Star';
+import { emptyStar, fullStar, blackStar } from '../../assets/Star';
 
 const LocationInfo = () => {
   const [star] = useState(true);
