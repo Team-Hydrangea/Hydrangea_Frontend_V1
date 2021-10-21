@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Map, Polygon, CustomOverlayMap, MapInfoWindow } from 'react-kakao-maps-sdk'
 import { data as polygon } from '../../Data/CityData'
 import CityPolygon from './CityPolygon';
+import Marker from './Marker';
 import SigPolygon from './SigPolygon';
 
 interface IMapData {
@@ -16,7 +17,7 @@ interface IMapData {
 const Maps = () => {
     const [ mapData, setMapData ] = useState<IMapData>({
         level: 12,
-        center: {Ma: 37.566826, La: 126.9786567},
+        center: {Ma: 37.63468141841211, La: 126.83240090434131},
     })
     const [ map, setMap ] = useState<any>()
 
@@ -25,8 +26,8 @@ const Maps = () => {
             <Map
                 id={`map`}
                 center={{
-                    lat: 37.566826,
-                    lng: 126.9786567,
+                    lat: 37.63468141841211,
+                    lng: 126.83240090434131,
                 }}
                 style={{
                     width: "100%",
@@ -40,8 +41,8 @@ const Maps = () => {
                 onCreate={setMap}
             >
                 {
-                    mapData.level < 9 ?
-                    null
+                    mapData.level < 8 ?
+                    <Marker/>
                     :   mapData.level > 10 ?
                         <CityPolygon />
                         : <SigPolygon />
