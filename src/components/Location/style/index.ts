@@ -13,6 +13,7 @@ export const Random = styled.div`
   width: 307px;
   height: 100px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
