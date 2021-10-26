@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { data as cityPolygon } from '../../../Data/CityData'
+import { data as cityPolygon } from '../../../data/cityData'
 import { Polygon } from 'react-kakao-maps-sdk';
 
 interface ICityData {
@@ -38,15 +38,14 @@ const CityPolygon = () => {
         setAreas(area)
     },[])
 
-    const gwangju = areas.filter((i) => i.circuitName === '광주광역시')[0];
-
     return (
         <>
             {areas.map((data, index) => (
                 <Polygon
                     key={`area-${data.circuitName}`}
-                    path={data.circuitName === '전라남도' ? [data.path, gwangju.path] : data.path}
-                    fillColor={data.isMouseOver ? "#09f" : "#fff"}
+                    path={data.path}
+                    fillColor={data.circuitName === '광주광역시' ? "rgba( 255, 255, 255, 0 )" : "#fff"}
+                    zIndex={data.circuitName === '광주광역시' ? 2 : 1}
                     strokeWeight={2}
                     strokeColor={"#004c80"}
                     strokeOpacity={0.8}
