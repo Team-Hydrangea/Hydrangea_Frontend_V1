@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 import Random from './Random';
 
-const index = () => {
+const Location = () => {
   return (
     <S.Location>
       <Random isHaveBookMark={false} />
@@ -10,4 +10,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Location;
