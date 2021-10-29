@@ -5,6 +5,7 @@ import { Polygon } from 'react-kakao-maps-sdk';
 interface ICityData {
     circuitName: string,
     isMouseOver: boolean,
+    center: number[],
     path: {
         lat: number;
         lng: number;
@@ -31,12 +32,15 @@ const CityPolygon = () => {
                 {
                     circuitName: data.properties.CTP_KOR_NM, 
                     isMouseOver: false,
-                    path: coordinate
+                    path: coordinate,
+                    center: data.properties.center
                 }
             )
         });
         setAreas(area)
     },[])
+
+    console.log(areas)
 
     return (
         <>
