@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useRecoilState } from 'recoil'
 import { Map } from 'react-kakao-maps-sdk'
 import CityPolygon from './CityPolygon';
 import Marker from './Marker';
+import { mapsState } from '../../recoil/mapsState';
 
 interface IMapData {
     level: number,
@@ -13,36 +15,34 @@ interface IMapData {
 }
 
 const Maps = () => {
-    const [ mapData, setMapData ] = useState<IMapData>({
-        level: 12,
-        center: {
-            Ma: 37.63468141841211, 
-            La: 126.83240090434131
-        },
-    })
+    const [data, setData] = useRecoilState(mapsState);
     const [ map, setMap ] = useState<any>()
+
+    const onCenter = (level: number, center: any ) => {
+        setData({...data, center: {lat: center.Ma, lng: center.La}, level: level})
+    }
+
 
     return (
         <>
             <Map
+                isPanto={true}
                 id={`map`}
                 center={{
-                    lat: 37.63468141841211,
-                    lng: 126.83240090434131,
+                    lat: data.center.lat,
+                    lng: data.center.lng,
                 }}
                 style={{
                     width: "100%",
                     height: "100vh",
                 }}
-                level={mapData.level}
-                onCenterChanged={(map) => setMapData({
-                    level: map.getLevel(),
-                    center: map.getCenter()
-                  })}
+                level={data.level}
+                onDragEnd={(map) => onCenter(map.getLevel(), map.getCenter()) }
+                onZoomChanged={(map) => onCenter(map.getLevel(), map.getCenter()) }
                 onCreate={setMap}
             >
                 {
-                    mapData.level < 9 ?
+                    data.level < 10 ?
                     <Marker/>
                     :   <CityPolygon />
                         
