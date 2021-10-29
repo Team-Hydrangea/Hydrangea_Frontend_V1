@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { data as cityPolygon } from '../../../data/CityData'
+import { data as cityPolygon } from '../../../Data/CityData'
 import { Polygon } from 'react-kakao-maps-sdk';
 import { mapsState } from '../../../recoil/mapsState';
 import { useSetRecoilState,useRecoilState } from 'recoil'
