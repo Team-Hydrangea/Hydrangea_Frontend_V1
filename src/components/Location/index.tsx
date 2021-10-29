@@ -3,6 +3,7 @@ import * as S from './style';
 import Random from './Random';
 import Search from './Search';
 import Login from './Login';
+import LocationInfo from '../LocationInfo';
 
 interface Props {}
 
@@ -24,6 +25,7 @@ const Location: FC<Props> = () => {
     <S.Location>
       <Search />
       <Random isHaveBookMark={false} />
+      <LocationInfo />
       {login}
     </S.Location>
   );
