@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import RootRouter from './router/RootRouter';
+import RootRouter from './Router/RootRouter';
 import GlobalStyle from './style/GlobalStyle';
 
 function App() {

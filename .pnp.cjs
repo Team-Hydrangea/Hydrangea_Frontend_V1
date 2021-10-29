@@ -45,6 +45,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:12.20.33"],
             ["@types/react", "npm:17.0.30"],
             ["@types/react-dom", "npm:17.0.9"],
+            ["@types/react-router-dom", "npm:5.3.2"],
             ["@types/redux-actions", "npm:2.6.2"],
             ["eslint-config-react-app", "virtual:c9b1d9993cd2bcda80beabdc219da5145f38f53c0cd4e5d1a5709806e9e5e6d1df6e049d7e0b5bfa4c3c1947cc13f82564b74ad6ef58107eddb8ca3b7b450de7#npm:6.0.0"],
             ["react", "npm:17.0.2"],
@@ -5140,6 +5141,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/history", [
+        ["npm:4.7.9", {
+          "packageLocation": "./.yarn/cache/@types-history-npm-4.7.9-daa6588d04-556b062adb.zip/node_modules/@types/history/",
+          "packageDependencies": [
+            ["@types/history", "npm:4.7.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/html-minifier-terser", [
         ["npm:5.1.1", {
           "packageLocation": "./.yarn/cache/@types-html-minifier-terser-npm-5.1.1-682990a5a3-e2f0882d9d.zip/node_modules/@types/html-minifier-terser/",
@@ -5304,6 +5314,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@types/react-dom", "npm:17.0.9"],
             ["@types/react", "npm:17.0.30"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/react-router", [
+        ["npm:5.1.17", {
+          "packageLocation": "./.yarn/cache/@types-react-router-npm-5.1.17-ec22591ff0-b9d1c7b6ce.zip/node_modules/@types/react-router/",
+          "packageDependencies": [
+            ["@types/react-router", "npm:5.1.17"],
+            ["@types/history", "npm:4.7.9"],
+            ["@types/react", "npm:17.0.30"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/react-router-dom", [
+        ["npm:5.3.2", {
+          "packageLocation": "./.yarn/cache/@types-react-router-dom-npm-5.3.2-85c77b2709-90f052dc5a.zip/node_modules/@types/react-router-dom/",
+          "packageDependencies": [
+            ["@types/react-router-dom", "npm:5.3.2"],
+            ["@types/history", "npm:4.7.9"],
+            ["@types/react", "npm:17.0.30"],
+            ["@types/react-router", "npm:5.1.17"]
           ],
           "linkType": "HARD",
         }]
@@ -5909,6 +5942,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:12.20.33"],
             ["@types/react", "npm:17.0.30"],
             ["@types/react-dom", "npm:17.0.9"],
+            ["@types/react-router-dom", "npm:5.3.2"],
             ["@types/redux-actions", "npm:2.6.2"],
             ["eslint-config-react-app", "virtual:c9b1d9993cd2bcda80beabdc219da5145f38f53c0cd4e5d1a5709806e9e5e6d1df6e049d7e0b5bfa4c3c1947cc13f82564b74ad6ef58107eddb8ca3b7b450de7#npm:6.0.0"],
             ["react", "npm:17.0.2"],
