@@ -65,3 +65,22 @@ export const SearchInput = styled.input`
     color: rgba(0, 0, 0, 0.5);
   }
 `;
+
+export const Login = styled.div`
+  width: 307px;
+  height: 40px;
+  background-color: #7184d6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
+  > p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+`;
