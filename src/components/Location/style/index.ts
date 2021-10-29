@@ -4,9 +4,7 @@ export const Location = styled.div`
   min-width: 347px;
   height: 100vh;
   background-color: #fafafa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  overflow-y: auto;
 `;
 
 export const Random = styled.div`
@@ -19,6 +17,8 @@ export const Random = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
+  margin: 0 auto;
+  margin-bottom: 10px;
 `;
 
 export const Title = styled.p`
@@ -40,7 +40,7 @@ export const Search = styled.div`
   justify-content: space-between;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
-  margin: 23px 0px 10px 0px;
+  margin: 23px auto 10px auto;
   padding: 0px 16px;
 `;
 
@@ -73,6 +73,7 @@ export const Login = styled.div`
   border-radius: 5px;
   position: absolute;
   bottom: 20px;
+  left: 17.5px;
   cursor: pointer;
   > p {
     font-size: 13px;
