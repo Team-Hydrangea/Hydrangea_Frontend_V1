@@ -7,6 +7,7 @@ export const LoactionInfo = styled.div<{
   width: 307px;
   border-radius: 8px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -49,11 +50,11 @@ export const LocationExplain = styled.div`
     align-items: center;
     gap: 4px;
     > img {
-      width: 9px;
-      height: 9px;
+      width: 10px;
+      height: 10px;
     }
     > p {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: bold;
     }
   }
