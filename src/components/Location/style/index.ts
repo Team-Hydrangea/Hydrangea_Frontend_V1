@@ -1,16 +1,12 @@
 import styled from '@emotion/styled';
 
 export const Location = styled.div`
-  width: 347px;
+  min-width: 347px;
   height: 100vh;
   background-color: #fafafa;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
 `;
 
 export const Random = styled.div`
