@@ -7,13 +7,13 @@ import InfoWindow from './InfoWindow';
 import { regionInfoState } from '../../../recoil/regionInfoState';
 
 interface ICityData {
-    circuitName: string,
-    isMouseOver: boolean,
-    center: number[],
-    path: {
-        lat: number;
-        lng: number;
-    }[]
+  circuitName: string;
+  isMouseOver: boolean;
+  center: number[];
+  path: {
+    lat: number;
+    lng: number;
+  }[];
 }
 
 const CityPolygon = () => {

@@ -3149,6 +3149,7 @@ __metadata:
     react: ^17.0.2
     react-app: ^1.1.2
     react-dom: ^17.0.2
+    react-icons: ^4.3.1
     react-kakao-maps-sdk: ^1.0.1
     react-router: ^5.2.1
     react-router-dom: ^5.3.0
@@ -12508,6 +12509,15 @@ fsevents@^1.2.7:
   version: 6.0.9
   resolution: "react-error-overlay@npm:6.0.9"
   checksum: 695853bc885e798008a00c10d8d94e5ac91626e8130802fea37345f9c037f41b80104345db2ee87f225feb4a4ef71b0df572b17c378a6d397b6815f6d4a84293
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "react-icons@npm:4.3.1"
+  peerDependencies:
+    react: "*"
+  checksum: 2cc608acdd3e906aa3aaee290b8398220639677c949382d86e554020e5dab6a9f1ed7484418aa5272cb5c5c018e1fc9a323d433d901697a76530029f9ecb1263
   languageName: node
   linkType: hard
 
