@@ -1,7 +1,7 @@
 import request from '../../axios'
 
 export default{
-    postVacationSpot(neLat: number, neLng: number, swLat: number, swLng: number){
+    postPlaceSpot(neLat: number, neLng: number, swLat: number, swLng: number){
         return request({
             url : `/place/all`,
             method : 'post',
@@ -13,7 +13,7 @@ export default{
             }
         })
     },
-    postEventSpot(neLat: number, neLng: number, swLat: number, swLng: number){
+    postFestivalSpot(neLat: number, neLng: number, swLat: number, swLng: number){
         return request({
             url: `/event/all`,
             method : 'post',
