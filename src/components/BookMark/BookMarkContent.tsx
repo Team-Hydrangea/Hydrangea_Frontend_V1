@@ -13,7 +13,7 @@ interface Props {
 
 const BookMarkContent: FC<Props> = props => {
   const { address, title, page } = props;
-
+  const onClickText = () => {};
   return (
     <S.BookMarkContentBox>
       <S.Content>
@@ -23,6 +23,7 @@ const BookMarkContent: FC<Props> = props => {
         </S.TopBox>
         <S.BottomBox>
           <S.AddressText>{address}</S.AddressText>
+          <S.StartText onClick={onClickText}>별점확인</S.StartText>
         </S.BottomBox>
       </S.Content>
     </S.BookMarkContentBox>

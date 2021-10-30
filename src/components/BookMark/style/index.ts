@@ -108,10 +108,23 @@ export const BottomBox = styled.div`
   width: fit-content;
   height: 14px;
   margin: 0;
+  display: flex;
 `;
 
 export const AddressText = styled.span`
   font-family: Noto Sans;
   font-size: 10px;
   color: #000000;
+`;
+
+export const StartText = styled.span`
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  color: #7184d6;
+  margin: 3px 0px 0px 1px;
+  cursor: pointer;
 `;
