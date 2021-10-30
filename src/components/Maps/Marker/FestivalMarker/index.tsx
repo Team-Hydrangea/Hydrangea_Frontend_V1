@@ -1,18 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import mapApi from '../../../../libs/api/mapApi';
 import { useRecoilState } from 'recoil';
-import { mapsState , rsData } from '../../../../recoil/mapsState';
+import { mapsState, fsData } from '../../../../recoil/mapsState';
 import { MapMarker } from 'react-kakao-maps-sdk';
-import { restaurant } from '../../../../assets/Marker';
+import { festival } from '../../../../assets/Marker';
 import { locationState } from '../../../../recoil/locationState';
 
 interface Props {
     data?: any
 }
 
-const RestaurantMarker: FC<Props> = () => {
+const FestivalMarker: FC<Props> = () => {
     const [ info , setInfo ] = useRecoilState(mapsState)
-    const [ data, setData ] = useRecoilState(rsData);
+    const [ data, setData ] = useRecoilState(fsData);
     const [ location ,setLocation] = useRecoilState(locationState);
 
     const onLocation = (i: any) => {
@@ -34,13 +34,13 @@ const RestaurantMarker: FC<Props> = () => {
                                 lng: i.longitude,
                             }}
                             image={{
-                                src: `${restaurant}`,
+                                src: `${festival}`,
                                 size: {
                                     width: 33,
                                     height: 33,
                                 }, 
                             }}
-                            key={`${i.latitude}-${i.longitude}-${index}`}
+                            key={`${i.latitudelat}-${i.longitude}`}
                         />
                     )
                 }))
@@ -49,4 +49,4 @@ const RestaurantMarker: FC<Props> = () => {
   );
 }
 
-export default RestaurantMarker;
+export default FestivalMarker;
