@@ -27,6 +27,7 @@ export const LocationTitle = styled.div`
   > p {
     font-weight: bold;
     word-break: keep-all;
+    cursor: pointer;
   }
   > img {
     width: 17px;
