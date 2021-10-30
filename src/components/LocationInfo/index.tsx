@@ -3,6 +3,8 @@ import * as S from './style';
 import { emptyStar, fullStar, blackStar } from '../../assets/Star';
 import { useRecoilState } from 'recoil';
 import { locationState } from '../../recoil/locationState';
+import { mapsState } from '../../recoil/mapsState';
+import { FaLaptopMedical } from 'react-icons/fa';
 
 interface Props {
   address: string;
@@ -30,8 +32,9 @@ const LocationInfo: FC<Props> = props => {
   } = props;
   const [isHaveImg, setIsHaveImg] = useState<boolean>(true);
   const [location] = useRecoilState(locationState);
+  const [ map, setMap ] = useRecoilState(mapsState)
   const accessToken = localStorage.getItem('access_token');
-
+ 
   const starBtn = useMemo(() => {
     if (accessToken) {
       if (bookmark) return <img src={fullStar} />;
@@ -61,8 +64,21 @@ const LocationInfo: FC<Props> = props => {
     return <p>{star_score}</p>;
   }, [star_score]);
 
+  const onMarkerMove = (lat: number, lng: number) => {
+    setMap({
+      ...map,
+      center : {lat: lat, lng: lng},
+      level: 4
+    })
+    map.center.lat === lat &&
+    (setMap({
+      ...map,
+      center : {lat: lat, lng: lng},
+    }))
+  }
+
   return (
-    <S.LoactionInfo isHaveImg={isHaveImg}>
+    <S.LoactionInfo isHaveImg={isHaveImg} onClick={() => onMarkerMove(latitude,longitude)}>
       <S.LocationTitle>
         <p style={{ fontSize: title && title.length > 15 ? '16px' : '18px' }}>{title}</p>
         {starBtn}
