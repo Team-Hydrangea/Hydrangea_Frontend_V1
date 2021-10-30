@@ -29,7 +29,7 @@ const global = css`
   }
   ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #ff9d86;
+    background-color: #7184d6;
   }
 `;
 
