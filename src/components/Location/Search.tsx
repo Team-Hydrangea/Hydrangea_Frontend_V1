@@ -30,7 +30,9 @@ const Search: FC<Props> = props => {
           },
           {
             headers: {
-              Authorization: localStorage.getItem('access_token') as string,
+              Authorization: localStorage.getItem('access_token')
+                ? 'Bearer ' + localStorage.getItem('access_token')
+                : '',
             },
           },
         )

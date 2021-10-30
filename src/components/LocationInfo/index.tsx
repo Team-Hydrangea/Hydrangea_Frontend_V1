@@ -10,7 +10,7 @@ interface Props {
   latitude: number;
   longitude: number;
   number: string;
-  star_score: boolean;
+  star_score: number;
   title: string;
 }
 
@@ -27,11 +27,14 @@ const LocationInfo: FC<Props> = props => {
     title,
   } = props;
   const [isHaveImg, setIsHaveImg] = useState<boolean>(true);
+  const accessToken = localStorage.getItem('access_token');
 
   const starBtn = useMemo(() => {
-    if (bookmark) return <img src={fullStar} />;
-    else return <img src={emptyStar} />;
-  }, [bookmark]);
+    if (accessToken) {
+      if (bookmark) return <img src={fullStar} />;
+      else return <img src={emptyStar} />;
+    }
+  }, [bookmark, accessToken]);
 
   const picture = useMemo(() => {
     if (isHaveImg) {
@@ -58,7 +61,7 @@ const LocationInfo: FC<Props> = props => {
   return (
     <S.LoactionInfo isHaveImg={isHaveImg}>
       <S.LocationTitle>
-        <p style={{ fontSize: title.length > 15 ? '16px' : '18px' }}>{title}</p>
+        <p style={{ fontSize: title && title.length > 15 ? '16px' : '18px' }}>{title}</p>
         {starBtn}
       </S.LocationTitle>
       {picture}
