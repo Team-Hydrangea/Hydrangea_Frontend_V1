@@ -1,49 +1,71 @@
-import React from 'react';
-import { Restaurant, VacationSpot } from '../../../assets/Marker';
-import { MapMarker } from 'react-kakao-maps-sdk';
+import React, { useEffect, useState } from 'react';
+import { mapsState, rsData, psData, fsData } from '../../../recoil/mapsState';
+import { useRecoilState } from 'recoil';
+import mapApi from '../../../libs/api/mapApi';
+import PlaceMarker from './PlaceMarker';
+import RestaurantMarker from './RestaurantMarker';
+import FestivalMarker from './FestivalMarker';
+
+
 
 const Marker = () => {
-  const restData = [
-    {
-      name: '쿠우쿠우',
-      position: {
-        lat: 37.63520907648065,
-        lng: 126.83190302464878,
-      },
-      type: 'restaurant',
-    },
-    {
-      name: '맥도날드',
-      position: {
-        lat: 37.633831495204795,
-        lng: 126.83155241236068,
-      },
-      type: 'restaurant',
-    },
-  ];
+    const [map, setMap] = useRecoilState(mapsState);
+    const [PsData, setPsData] = useRecoilState<any>(psData)
+    const [RsData, setRsData] = useRecoilState<any>(rsData);
+    const [FsData, setFsData] = useRecoilState<any>(fsData);
 
-  return (
-    <>
-      {restData.map((i, index) => {
-        return (
-          <MapMarker // 마커를 생성합니다
-            position={{
-              lat: i.position.lat,
-              lng: i.position.lng,
-            }}
-            image={{
-              src: `${i.type === 'restaurant' ? Restaurant : VacationSpot}`,
-              size: {
-                width: 44,
-                height: 55,
-              }, // 마커이미지의 크기입니다
-            }}
-            key={`${i.position.lat}-${i.position.lng}`}
-          />
-        );
-      })}
-    </>
-  );
-};
+    useEffect(() => {
+        mapApi.postPlaceSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        .then((res) => {
+            setPsData(res.data)
+        })   
+        .catch((err) => {
+            console.log(err)
+        })
+
+        mapApi.postRestaurantSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        .then((res) => {
+            setRsData(res.data)
+        })   
+        .catch((err) => {
+            console.log(err)
+        })
+
+        mapApi.postFestivalSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        .then((res) => {
+            setFsData(res.data)
+            console.log(res.data)
+        })   
+        .catch((err) => {
+            console.log(err)
+        })
+    }, [map])
+
+    const onCenterMove = (lat: number, lng: number) => {
+        setMap({...map, center: {lat: lat, lng: lng}, level: 5, cityName: 'marker'})
+    }
+
+    console.log(RsData)
+
+    return (
+        <>
+            {
+                PsData !== [] ? 
+                <PlaceMarker/>
+                : null
+            }
+            {
+                RsData !== [] ? 
+                <RestaurantMarker/>
+                : null
+            }
+            {
+                FsData !== [] ? 
+                <FestivalMarker/>
+                : null
+            }
+        </>
+    );
+}
 
 export default Marker;

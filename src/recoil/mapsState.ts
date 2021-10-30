@@ -29,3 +29,18 @@ export const mousePositionState = atom<IMousePositionAtom>({
         name: '',
     }
 })
+
+export const psData = atom({
+    key: 'vsdata',
+    default: [],
+})
+
+export const fsData = atom({
+    key: 'esData',
+    default: [],
+})
+
+export const rsData = atom({
+    key: 'rsData',
+    default: [],
+})

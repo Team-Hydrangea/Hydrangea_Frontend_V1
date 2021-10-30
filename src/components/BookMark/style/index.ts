@@ -60,6 +60,7 @@ export const LogOutBox = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
   p {
     font-family: Noto Sans;
     font-weight: bold;
