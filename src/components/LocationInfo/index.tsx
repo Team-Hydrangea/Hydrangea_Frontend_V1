@@ -3,6 +3,7 @@ import * as S from './style';
 import { emptyStar, fullStar, blackStar } from '../../assets/Star';
 import { useRecoilState } from 'recoil';
 import { locationState } from '../../recoil/locationState';
+import axios from 'axios';
 
 interface Props {
   address: string;
@@ -30,14 +31,15 @@ const LocationInfo: FC<Props> = props => {
   } = props;
   const [isHaveImg, setIsHaveImg] = useState<boolean>(true);
   const [location] = useRecoilState(locationState);
+  const [bookmarkState, setBookmarkState] = useState<boolean>(false);
   const accessToken = localStorage.getItem('access_token');
 
-  const starBtn = useMemo(() => {
+  useEffect(() => {
     if (accessToken) {
-      if (bookmark) return <img src={fullStar} />;
-      else return <img src={emptyStar} />;
+      if (bookmark) setBookmarkState(true);
+      else setBookmarkState(false);
     }
-  }, [bookmark, accessToken]);
+  }, [bookmark]);
 
   const picture = useMemo(() => {
     if (isHaveImg) {
@@ -60,6 +62,33 @@ const LocationInfo: FC<Props> = props => {
   const starScore = useMemo(() => {
     return <p>{star_score}</p>;
   }, [star_score]);
+
+  const bookmarkBtnClickHandler = () => {
+    axios
+      .post(
+        'http://3.36.6.62:8080/bookmark',
+        {
+          latitude: latitude,
+          longitude: longitude,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      )
+      .then(() => {
+        setBookmarkState(!bookmarkState);
+      })
+      .catch(error => console.log(error));
+  };
+
+  const starBtn = useMemo(() => {
+    if (accessToken) {
+      if (bookmarkState) return <img src={fullStar} onClick={bookmarkBtnClickHandler} />;
+      else return <img src={emptyStar} onClick={bookmarkBtnClickHandler} />;
+    }
+  }, [bookmarkState, accessToken]);
 
   return (
     <S.LoactionInfo isHaveImg={isHaveImg}>
