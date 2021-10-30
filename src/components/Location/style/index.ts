@@ -1,3 +1,4 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Location = styled.div`
@@ -31,7 +32,7 @@ export const SubTitle = styled.p`
   margin-top: 3px;
 `;
 
-export const Search = styled.div`
+export const Search = styled.form`
   width: 307px;
   height: 42px;
   background-color: white;
@@ -44,9 +45,16 @@ export const Search = styled.div`
   padding: 0px 16px;
 `;
 
-export const SearchIcon = styled.img`
-  width: 20px;
-  height: 20px;
+export const SearchIcon = styled.button`
+  width: 19px;
+  height: 19px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -79,5 +87,37 @@ export const Login = styled.div`
     font-size: 13px;
     font-weight: bold;
     color: #ffffff;
+  }
+`;
+
+export const NoContent = styled.div`
+  width: 100%;
+  color: #4c4c4c;
+  text-align: center;
+  margin-top: 100px;
+  > p:first-child {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  > p:last-child {
+    font-size: 10px;
+  }
+`;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @keyframes rotate_image {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  > img {
+    width: 20px;
+    height: 20px;
+    animation: rotate_image 6s linear infinite;
+    transform-origin: 50% 50%;
   }
 `;

@@ -26,7 +26,7 @@ export const LocationTitle = styled.div`
   margin-bottom: 15px;
   > p {
     font-weight: bold;
-    font-size: 18px;
+    word-break: keep-all;
   }
   > img {
     width: 17px;
@@ -41,7 +41,7 @@ export const LocationExplain = styled.div`
   align-items: center;
   margin-top: 3px;
   > p {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: bold;
   }
   > span {
@@ -60,9 +60,8 @@ export const LocationExplain = styled.div`
   }
 `;
 
-export const Picture = styled.div`
+export const Picture = styled.img`
   width: 258px;
   height: 118px;
-  background-color: red;
   margin-bottom: 7px;
 `;
