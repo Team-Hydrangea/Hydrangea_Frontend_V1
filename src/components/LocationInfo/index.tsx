@@ -34,12 +34,10 @@ const LocationInfo: FC<Props> = props => {
   const [isHaveImg, setIsHaveImg] = useState<boolean>(true);
   const [location] = useRecoilState(locationState);
   const [bookmarkState, setBookmarkState] = useState<boolean>(false);
-  const [ map, setMap ] = useRecoilState(mapsState)
+  const [map, setMap] = useRecoilState(mapsState);
   const accessToken = localStorage.getItem('access_token');
 
   useEffect(() => {
- 
-  const starBtn = useMemo(() => {
     if (accessToken) {
       if (bookmark) setBookmarkState(true);
       else setBookmarkState(false);
@@ -98,20 +96,25 @@ const LocationInfo: FC<Props> = props => {
   const onMarkerMove = (lat: number, lng: number) => {
     setMap({
       ...map,
-      center : {lat: lat, lng: lng},
-      level: 4
-    })
+      center: { lat: lat, lng: lng },
+      level: 4,
+    });
     map.center.lat === lat &&
-    (setMap({
-      ...map,
-      center : {lat: lat, lng: lng},
-    }))
-  }
+      setMap({
+        ...map,
+        center: { lat: lat, lng: lng },
+      });
+  };
 
   return (
     <S.LoactionInfo isHaveImg={isHaveImg}>
       <S.LocationTitle>
-        <p style={{ fontSize: title && title.length > 15 ? '16px' : '18px' }} onClick={() => onMarkerMove(latitude,longitude)}>{title}</p>
+        <p
+          style={{ fontSize: title && title.length > 15 ? '16px' : '18px' }}
+          onClick={() => onMarkerMove(latitude, longitude)}
+        >
+          {title}
+        </p>
         {starBtn}
       </S.LocationTitle>
       {picture}
