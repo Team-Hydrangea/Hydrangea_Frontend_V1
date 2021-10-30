@@ -1,49 +1,55 @@
-import React from 'react';
-import { Restaurant, VacationSpot } from '../../../assets/Marker';
-import { MapMarker } from 'react-kakao-maps-sdk';
+import React, { useEffect, useState } from 'react';
+import { mapsState, rsData, vsData } from '../../../recoil/mapsState';
+import { useRecoilState } from 'recoil';
+import mapApi from '../../../libs/api/mapApi';
+import PlaceMarker from './PlaceMarker';
+import RestaurantMarker from './RestaurantMarker';
+
+
 
 const Marker = () => {
-  const restData = [
-    {
-      name: '쿠우쿠우',
-      position: {
-        lat: 37.63520907648065,
-        lng: 126.83190302464878,
-      },
-      type: 'restaurant',
-    },
-    {
-      name: '맥도날드',
-      position: {
-        lat: 37.633831495204795,
-        lng: 126.83155241236068,
-      },
-      type: 'restaurant',
-    },
-  ];
+    const [map, setMap] = useRecoilState(mapsState);
+    const [VsData, setVsData] = useRecoilState<any>(vsData)
+    const [RsData, setRsData] = useRecoilState<any>(rsData);
 
-  return (
-    <>
-      {restData.map((i, index) => {
-        return (
-          <MapMarker // 마커를 생성합니다
-            position={{
-              lat: i.position.lat,
-              lng: i.position.lng,
-            }}
-            image={{
-              src: `${i.type === 'restaurant' ? Restaurant : VacationSpot}`,
-              size: {
-                width: 44,
-                height: 55,
-              }, // 마커이미지의 크기입니다
-            }}
-            key={`${i.position.lat}-${i.position.lng}`}
-          />
-        );
-      })}
-    </>
-  );
-};
+    useEffect(() => {
+        mapApi.postVacationSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        .then((res) => {
+            setVsData(res.data)
+        })   
+        .catch((err) => {
+            console.log(err)
+        })
+
+        mapApi.postRestaurantSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        .then((res) => {
+            setRsData(res.data)
+        })   
+        .catch((err) => {
+            console.log(err)
+        })
+    }, [map])
+
+    const onCenterMove = (lat: number, lng: number) => {
+        setMap({...map, center: {lat: lat, lng: lng}, level: 5, cityName: 'marker'})
+    }
+
+    console.log(RsData)
+
+    return (
+        <>
+            {
+                VsData !== [] ? 
+                <PlaceMarker/>
+                : null
+            }
+            {
+                RsData !== [] ? 
+                <RestaurantMarker/>
+                : null
+            }
+        </>
+    );
+}
 
 export default Marker;
