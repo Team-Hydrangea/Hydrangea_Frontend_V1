@@ -22,7 +22,7 @@ const Location: FC<Props> = () => {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    if (accessToken !== '') setIsLogin(true);
+    if (accessToken) setIsLogin(true);
     else setIsLogin(false);
   }, [accessToken]);
 
