@@ -21,7 +21,6 @@ const Location: FC<Props> = () => {
   const accessToken = localStorage.getItem('access_token');
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(0);
-  const [isHaveBookMark, setIsHaveBookMark] = useState<boolean>(false);
   const { ref, inView } = useInView();
 
   useEffect(() => {
@@ -59,14 +58,12 @@ const Location: FC<Props> = () => {
 
   const showRandom = useMemo(() => {
     if (search.isShowRandom) {
-      if (isHaveBookMark)
-        return (
-          <>
-            <Random isHaveBookMark={isHaveBookMark} />
-            {randomBookMark.title !== '' && <LocationInfo {...randomBookMark} />}
-          </>
-        );
-      else return <Random isHaveBookMark={isHaveBookMark} />;
+      return (
+        <>
+          <Random />
+          {randomBookMark.title !== '' && <LocationInfo {...randomBookMark} />}
+        </>
+      );
     } else return;
   }, [search.isShowRandom, randomBookMark]);
 
