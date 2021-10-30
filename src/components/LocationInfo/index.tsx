@@ -1,37 +1,73 @@
-import React, { useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { emptyStar, fullStar, blackStar } from '../../assets/Star';
 
-const LocationInfo = () => {
-  const [star] = useState<boolean>(true);
-  const [isHaveImg, setIsHaveImg] = useState<boolean>(false);
+interface Props {
+  address: string;
+  bookmark: boolean;
+  detail_address: string;
+  image: string;
+  latitude: number;
+  longitude: number;
+  number: string;
+  star_score: boolean;
+  title: string;
+}
+
+const LocationInfo: FC<Props> = props => {
+  const {
+    address,
+    bookmark,
+    detail_address,
+    image,
+    latitude,
+    longitude,
+    number,
+    star_score,
+    title,
+  } = props;
+  const [isHaveImg, setIsHaveImg] = useState<boolean>(true);
 
   const starBtn = useMemo(() => {
-    if (star) return <img src={fullStar} />;
+    if (bookmark) return <img src={fullStar} />;
     else return <img src={emptyStar} />;
-  }, [star]);
+  }, [bookmark]);
 
   const picture = useMemo(() => {
     if (isHaveImg) {
-      return <S.Picture />;
+      return <S.Picture src={image} />;
     } else return;
   }, [isHaveImg]);
+
+  useEffect(() => {
+    if (image) setIsHaveImg(true);
+    else setIsHaveImg(false);
+  }, [image]);
+
+  const showAddress = useMemo(() => {
+    if (address) {
+      if (detail_address) return <p>{`${address}${detail_address}`}</p>;
+      else return <p>{address}</p>;
+    }
+  }, [address, detail_address]);
+
+  const starScore = useMemo(() => {
+    return <p>{star_score}</p>;
+  }, [star_score]);
 
   return (
     <S.LoactionInfo isHaveImg={isHaveImg}>
       <S.LocationTitle>
-        <p>신성동 행정복지센터</p>
+        <p style={{ fontSize: title.length > 15 ? '16px' : '18px' }}>{title}</p>
         {starBtn}
       </S.LocationTitle>
       {picture}
+      <S.LocationExplain>{showAddress}</S.LocationExplain>
       <S.LocationExplain>
-        <p>대전광역시 유성구 하기동 18-6</p>
-      </S.LocationExplain>
-      <S.LocationExplain>
-        <p>010-0000-0000</p>
+        <p>{number}</p>
         <span>
           <img src={blackStar} />
-          <p>4.75</p>
+          {starScore}
         </span>
       </S.LocationExplain>
     </S.LoactionInfo>
