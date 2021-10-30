@@ -63,6 +63,7 @@ const Location: FC<Props> = () => {
         <>
           <Random />
           {randomContent.content.length !== 0 &&
+            randomBookMark.title === '' &&
             randomContent.content.map(data => {
               return <LocationInfo {...data} />;
             })}
