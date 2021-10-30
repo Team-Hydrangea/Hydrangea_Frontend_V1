@@ -9,7 +9,7 @@ import { searchState } from '../../recoil/searchState';
 import { locationState } from '../../recoil/locationState';
 import { useInView } from 'react-intersection-observer';
 import { logo } from '../../assets/Loading';
-import { bookmarkRandomState } from '../../recoil/randomState';
+import { bookmarkRandomState, randomState } from '../../recoil/randomState';
 
 interface Props {}
 
@@ -17,6 +17,7 @@ const Location: FC<Props> = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [search] = useRecoilState(searchState);
   const [location] = useRecoilState(locationState);
+  const [randomContent] = useRecoilState(randomState);
   const [randomBookMark] = useRecoilState(bookmarkRandomState);
   const accessToken = localStorage.getItem('access_token');
   const [loading, setLoading] = useState<boolean>(false);
@@ -61,11 +62,15 @@ const Location: FC<Props> = () => {
       return (
         <>
           <Random />
+          {randomContent.content.length !== 0 &&
+            randomContent.content.map(data => {
+              return <LocationInfo {...data} />;
+            })}
           {randomBookMark.title !== '' && <LocationInfo {...randomBookMark} />}
         </>
       );
     } else return;
-  }, [search.isShowRandom, randomBookMark]);
+  }, [search.isShowRandom, randomBookMark, randomContent]);
 
   const isHaveContent = useMemo(() => {
     if (search.isSearch) {

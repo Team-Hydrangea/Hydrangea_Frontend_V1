@@ -3,9 +3,21 @@ import { atom } from 'recoil';
 export const randomState = atom({
   key: 'randomState',
   default: {
-    name: '',
+    content: [],
   },
 });
+
+type randomStateArrayType = {
+  address: string;
+  detail_address: string;
+  imgae: string;
+  latitude: number;
+  longitude: number;
+  number: string;
+  star_score: number;
+  title: string;
+  bookmark: boolean;
+};
 
 export const bookmarkRandomState = atom({
   key: 'bookmarkRandomState',

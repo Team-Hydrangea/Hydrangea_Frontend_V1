@@ -1,7 +1,6 @@
 import axios from 'axios';
-import React, { FC, useEffect, useMemo, useState } from 'react';
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { bookMarkListState } from '../../recoil/bookMark';
+import React, { FC, useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { bookmarkRandomState, randomState } from '../../recoil/randomState';
 import * as S from './style';
 
@@ -47,8 +46,8 @@ const Random: FC<Props> = props => {
         .catch(error => console.log(error));
     else
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}region/safe`)
-        .then(response => setRandom({ name: response.data.name }))
+        .get(`${process.env.REACT_APP_BASE_URL}region/safe?page=0&size=5`)
+        .then(response => setRandom({ content: random.content.concat(response.data) }))
         .catch(error => console.log(error));
   }, [isHaveBookMark]);
 
