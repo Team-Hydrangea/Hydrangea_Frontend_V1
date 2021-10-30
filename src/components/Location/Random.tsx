@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
-import { bookMarkListState } from '../../recoil/bookMark';
 import { bookmarkRandomState, randomState } from '../../recoil/randomState';
 import * as S from './style';
 
