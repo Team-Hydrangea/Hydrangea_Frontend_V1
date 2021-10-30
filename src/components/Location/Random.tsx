@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { FC, useEffect, useMemo, useState } from 'react';
-import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil';
+import React, { FC, useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
 import { bookmarkRandomState, randomState } from '../../recoil/randomState';
 import * as S from './style';
 
@@ -20,7 +20,7 @@ const Random: FC<Props> = props => {
 
   useEffect(() => {
     axios
-      .get('http://3.36.6.62:8080/bookmark', {
+      .get('http://3.36.6.62:8080/bookmark?size=5&page=0', {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -37,7 +37,7 @@ const Random: FC<Props> = props => {
   useEffect(() => {
     if (isHaveBookMark)
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}bookmark/random`, {
+        .get(`http://3.36.6.62:8080/bookmark/random`, {
           headers: {
             Authorization: 'Bearer ' + localStorage.getItem('access_token'),
           },
@@ -46,8 +46,14 @@ const Random: FC<Props> = props => {
         .catch(error => console.log(error));
     else
       axios
-        .get(`${process.env.REACT_APP_BASE_URL}region/safe`)
-        .then(response => setRandom({ name: response.data.name }))
+        .get(`http://3.36.6.62:8080/region/safe?page=0&size=5`, {
+          headers: {
+            Authorization: localStorage.getItem('access_token')
+              ? 'Bearer ' + localStorage.getItem('access_token')
+              : '',
+          },
+        })
+        .then(response => setRandom({ content: random.content.concat(response.data) }))
         .catch(error => console.log(error));
   }, [isHaveBookMark]);
 
