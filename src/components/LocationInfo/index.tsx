@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import * as S from './style';
 import { emptyStar, fullStar, blackStar } from '../../assets/Star';
+import { useRecoilState } from 'recoil';
+import { locationState } from '../../recoil/locationState';
 
 interface Props {
   address: string;
@@ -27,6 +29,7 @@ const LocationInfo: FC<Props> = props => {
     title,
   } = props;
   const [isHaveImg, setIsHaveImg] = useState<boolean>(true);
+  const [location] = useRecoilState(locationState);
   const accessToken = localStorage.getItem('access_token');
 
   const starBtn = useMemo(() => {
@@ -40,7 +43,7 @@ const LocationInfo: FC<Props> = props => {
     if (isHaveImg) {
       return <S.Picture src={image} />;
     } else return;
-  }, [isHaveImg]);
+  }, [isHaveImg, location]);
 
   useEffect(() => {
     if (image) setIsHaveImg(true);
