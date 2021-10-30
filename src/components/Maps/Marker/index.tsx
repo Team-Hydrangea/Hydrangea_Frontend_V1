@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { mapsState, rsData, vsData } from '../../../recoil/mapsState';
+import { mapsState, rsData, psData, fsData } from '../../../recoil/mapsState';
 import { useRecoilState } from 'recoil';
 import mapApi from '../../../libs/api/mapApi';
 import PlaceMarker from './PlaceMarker';
 import RestaurantMarker from './RestaurantMarker';
+import FestivalMarker from './FestivalMarker';
 
 
 
 const Marker = () => {
     const [map, setMap] = useRecoilState(mapsState);
-    const [VsData, setVsData] = useRecoilState<any>(vsData)
+    const [PsData, setPsData] = useRecoilState<any>(psData)
     const [RsData, setRsData] = useRecoilState<any>(rsData);
+    const [FsData, setFsData] = useRecoilState<any>(fsData);
 
     useEffect(() => {
-        mapApi.postVacationSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        mapApi.postPlaceSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
         .then((res) => {
-            setVsData(res.data)
+            setPsData(res.data)
         })   
         .catch((err) => {
             console.log(err)
@@ -24,6 +26,15 @@ const Marker = () => {
         mapApi.postRestaurantSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
         .then((res) => {
             setRsData(res.data)
+        })   
+        .catch((err) => {
+            console.log(err)
+        })
+
+        mapApi.postFestivalSpot(map.neLatLng.lat, map.neLatLng.lng, map.swLatLng.lat, map.swLatLng.lng)
+        .then((res) => {
+            setFsData(res.data)
+            console.log(res.data)
         })   
         .catch((err) => {
             console.log(err)
@@ -39,13 +50,18 @@ const Marker = () => {
     return (
         <>
             {
-                VsData !== [] ? 
+                PsData !== [] ? 
                 <PlaceMarker/>
                 : null
             }
             {
                 RsData !== [] ? 
                 <RestaurantMarker/>
+                : null
+            }
+            {
+                FsData !== [] ? 
+                <FestivalMarker/>
                 : null
             }
         </>
