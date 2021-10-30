@@ -78,9 +78,9 @@ const LocationInfo: FC<Props> = props => {
   }
 
   return (
-    <S.LoactionInfo isHaveImg={isHaveImg} onClick={() => onMarkerMove(latitude,longitude)}>
+    <S.LoactionInfo isHaveImg={isHaveImg}>
       <S.LocationTitle>
-        <p style={{ fontSize: title && title.length > 15 ? '16px' : '18px' }}>{title}</p>
+        <p style={{ fontSize: title && title.length > 15 ? '16px' : '18px' }} onClick={() => onMarkerMove(latitude,longitude)}>{title}</p>
         {starBtn}
       </S.LocationTitle>
       {picture}
