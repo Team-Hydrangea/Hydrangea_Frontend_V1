@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { data as cityPolygon } from '../../../data/CityData'
-import { Polygon } from 'react-kakao-maps-sdk';
-import { mapsState } from '../../../recoil/mapsState';
-import { useSetRecoilState,useRecoilState } from 'recoil'
+import { CustomOverlayMap, Polygon } from 'react-kakao-maps-sdk';
+import { mapsState, mousePositionState } from '../../../recoil/mapsState';
+import { useSetRecoilState,useRecoilState, useRecoilValue } from 'recoil'
+import InfoWindow from './InfoWindow';
+import { regionInfoState } from '../../../recoil/regionInfoState';
 
 interface ICityData {
   circuitName: string;
@@ -17,6 +19,9 @@ interface ICityData {
 const CityPolygon = () => {
     const [ areas, setAreas ] = useState<ICityData[]>([])
     const [map, setMap] = useRecoilState(mapsState)
+    const [ mousePosition, setMousePosition ] = useRecoilState(mousePositionState)
+    const value = useRecoilValue(regionInfoState);
+    console.log(value)
 
     useEffect(() => {
         let data = cityPolygon.features;
@@ -41,9 +46,9 @@ const CityPolygon = () => {
         setAreas(area)
     },[])
 
-    console.log(areas)
-    const onCenterMove = (name: string,center: number[]) => {
+    const onCenterMove = (name: string,center: number[], mouseEvent: any) => {
         setMap({
+            ...map,
             cityName: name,
             center: {
                 lat: center[0],
@@ -60,14 +65,15 @@ const CityPolygon = () => {
             },
             level: map.cityName !== name ? map.level : map.level-1
         })
+        console.log({lat: mouseEvent.latLng?.getLat(), lng: mouseEvent.latLng?.getLng(), name: name})
+        setMousePosition({lat: mouseEvent.latLng?.getLat(), lng: mouseEvent.latLng?.getLng(), name: name })
     }
-    console.log(map)
 
     return (
         <>
             {areas.map((data, index) => (
                 <Polygon
-                    onClick={() => onCenterMove(data.circuitName,data.center)}
+                    onClick={(_data, mouseEvent) => onCenterMove(data.circuitName,data.center, mouseEvent) }
                     key={`area-${data.circuitName}`}
                     path={data.path}
                     fillColor={data.circuitName === '광주광역시' ? "rgba( 255, 255, 255, 0 )" : "#fff"}
@@ -76,26 +82,13 @@ const CityPolygon = () => {
                     strokeColor={"#004c80"}
                     strokeOpacity={0.8}
                     fillOpacity={0.7}
-                    // onMouseover={() =>
-                    //     setAreas((prev) => [
-                    //       ...prev.filter((_, i) => i !== index),
-                    //       {
-                    //         ...prev[index],
-                    //         isMouseOver: true,
-                    //       },
-                    //     ])
-                    //   }
-                    // onMouseout={() =>
-                    //     setAreas((prev) => [
-                    //         ...prev.filter((_, i) => i !== index),
-                    //         {
-                    //         ...prev[index],
-                    //         isMouseOver: false,
-                    //         },
-                    //     ])
-                    // }
                 />
             ))}
+            {
+                mousePosition.name !== '' && map.level >= 10 && (
+                    <InfoWindow value={value}/>
+                )
+            }
         </>
     );
 }

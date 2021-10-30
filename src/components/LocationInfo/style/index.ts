@@ -59,57 +59,9 @@ export const LocationExplain = styled.div`
   }
 `;
 
-export const PictureSlider = styled.div`
+export const Picture = styled.div`
   width: 258px;
   height: 118px;
-  margin-bottom: 7px;
-`;
-
-export const Slider = styled.div`
-  width: 100%;
-  height: 107px;
-  position: relative;
-`;
-
-export const Container = styled.div`
-  width: 258px;
-  height: 107px;
-  overflow: hidden;
-  position: relative;
-`;
-
-export const SliderBox = styled.div`
-  width: 300%;
-  height: 107px;
-  position: absolute;
-  top: 0;
-`;
-
-export const SliderItem = styled.div`
-  width: calc(100% / 3);
-  height: 100%;
-  float: left;
-  > img {
-    width: 100%;
-    height: 100%;
-  }
-`;
-
-export const SliderPage = styled.div<{ isNowPage: boolean }>`
-  width: 5px;
-  height: 5px;
-  border-radius: 5px;
   background-color: red;
-  ${({ isNowPage }) => css`
-    background-color: ${isNowPage ? '#7184D6' : '#C4C4C4'};
-  `}
-`;
-
-export const SliderPageLine = styled.div`
-  width: 258px;
-  height: 11px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+  margin-bottom: 7px;
 `;
