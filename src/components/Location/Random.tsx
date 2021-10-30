@@ -27,7 +27,7 @@ const Random: FC<Props> = props => {
             Authorization: 'Bearer ' + localStorage.getItem('access_token'),
           },
         })
-        .then(response => setBookmarkRandom(response.data))
+        .then(response => setBookmarkRandom({ ...bookmarkRandom, ...response.data }))
         .catch(error => console.log(error));
     else
       axios

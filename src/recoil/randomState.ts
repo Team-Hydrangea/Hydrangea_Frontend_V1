@@ -17,5 +17,7 @@ export const bookmarkRandomState = atom({
     longitude: 0,
     number: '',
     title: '',
+    star_score: 0,
+    bookmark: true,
   },
 });
