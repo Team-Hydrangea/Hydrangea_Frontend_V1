@@ -15,7 +15,7 @@ interface Props {}
 
 const Location: FC<Props> = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
-  const [search] = useRecoilState(searchState);
+  const [search, setSearch] = useRecoilState(searchState);
   const [location] = useRecoilState(locationState);
   const [randomContent] = useRecoilState(randomState);
   const [randomBookMark] = useRecoilState(bookmarkRandomState);
@@ -88,7 +88,10 @@ const Location: FC<Props> = () => {
         });
       }
     } else {
-      if (location.content.length !== 0) return <LocationInfo {...location.content[0]} />;
+      if (location.content.length !== 0) {
+        setSearch({ ...search, isShowRandom: false });
+        return <LocationInfo {...location.content[0]} />;
+      }
     }
   }, [location.content]);
 
