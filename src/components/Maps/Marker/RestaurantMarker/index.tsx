@@ -1,35 +1,46 @@
 import React, { FC, useEffect, useState } from 'react';
+import mapApi from '../../../../libs/api/mapApi';
 import { useRecoilState } from 'recoil';
-import { mapsState, rsData } from '../../../../recoil/mapsState';
+import { mapsState , rsData } from '../../../../recoil/mapsState';
 import { MapMarker } from 'react-kakao-maps-sdk';
-import { Restaurant } from '../../../../assets/Marker';
+import { restaurant } from '../../../../assets/Marker';
+import { locationState } from '../../../../recoil/locationState';
 
 interface Props {
     data?: any
 }
 
 const RestaurantMarker: FC<Props> = () => {
-    const [ info, setInfo ] = useRecoilState(mapsState);
+    const [ info , setInfo ] = useRecoilState(mapsState)
     const [ data, setData ] = useRecoilState(rsData);
+    const [ location ,setLocation] = useRecoilState(locationState);
+
+    const onLocation = (i: any) => {
+        setLocation({
+            content: [{...i}],
+            total_elements: 1
+        })
+    }
 
     return (
         <>
             {
-                info.level <= 4 && (data.map((i: any,index: any) => {
+                info.level <= 5 && (data.map((i: any,index: any) => {
                     return (
-                        <MapMarker // 마커를 생성합니다
+                        <MapMarker
+                            onClick={() => onLocation(i)}
                             position={{
                                 lat: i.latitude,
                                 lng: i.longitude,
                             }}
                             image={{
-                                src: `${Restaurant}`,
+                                src: `${restaurant}`,
                                 size: {
                                     width: 33,
-                                    height: 45,
-                                }, // 마커이미지의 크기입니다
+                                    height: 33,
+                                }, 
                             }}
-                            key={`${i.latitudelat}-${i.longitude}`}
+                            key={`${i.latitude}-${i.longitude}-${index}`}
                         />
                     )
                 }))
