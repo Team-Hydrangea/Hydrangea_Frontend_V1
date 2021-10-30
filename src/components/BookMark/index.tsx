@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import { bookeMarkState } from '../../recoil/bookMark';
 import { useRecoilState } from 'recoil';
 import axios from 'axios';
+import { refreshToken } from '../../libs/api/refreshToken';
 
 const BookeMark = () => {
   const [mount, setMount] = useState(false);
@@ -49,6 +50,7 @@ const BookeMark = () => {
       })
       .catch(error => {
         console.log(error);
+        if (error.response?.status === 401 || error.response?.status === 403) refreshToken();
       });
   }, [page]);
   useEffect(() => {
