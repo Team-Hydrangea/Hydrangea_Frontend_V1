@@ -6,7 +6,8 @@ export const refreshToken = () => {
       refresh_token: localStorage.getItem('refresh_token'),
     })
     .then(response => {
-      localStorage.setItem('access_token', response.data);
+      localStorage.setItem('access_token', response.data.access_token);
+      window.location.reload();
     })
     .catch(error => {
       throw error;
