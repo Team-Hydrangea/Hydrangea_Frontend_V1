@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { rsData } from '../../../../recoil/mapsState';
+import { mapsState, rsData } from '../../../../recoil/mapsState';
 import { MapMarker } from 'react-kakao-maps-sdk';
 import { Restaurant } from '../../../../assets/Marker';
 
@@ -9,12 +9,13 @@ interface Props {
 }
 
 const RestaurantMarker: FC<Props> = () => {
+    const [ info, setInfo ] = useRecoilState(mapsState);
     const [ data, setData ] = useRecoilState(rsData);
 
     return (
         <>
             {
-                data.map((i: any,index: any) => {
+                info.level <= 4 && (data.map((i: any,index: any) => {
                     return (
                         <MapMarker // 마커를 생성합니다
                             position={{
@@ -31,7 +32,7 @@ const RestaurantMarker: FC<Props> = () => {
                             key={`${i.latitudelat}-${i.longitude}`}
                         />
                     )
-                })
+                }))
             }
         </>
   );
