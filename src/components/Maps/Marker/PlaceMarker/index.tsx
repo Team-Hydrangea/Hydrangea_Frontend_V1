@@ -1,16 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
+import mapApi from '../../../../libs/api/mapApi';
 import { useRecoilState } from 'recoil';
-import { mapsState, rsData } from '../../../../recoil/mapsState';
+import { mapsState, vsData } from '../../../../recoil/mapsState';
 import { MapMarker } from 'react-kakao-maps-sdk';
-import { Restaurant } from '../../../../assets/Marker';
+import { VacationSpot } from '../../../../assets/Marker';
 
 interface Props {
     data?: any
 }
 
-const RestaurantMarker: FC<Props> = () => {
-    const [ info, setInfo ] = useRecoilState(mapsState);
-    const [ data, setData ] = useRecoilState(rsData);
+const PlaceMarker: FC<Props> = () => {
+    const [ info , setInfo ] = useRecoilState(mapsState)
+    const [ data, setData ] = useRecoilState(vsData);
 
     return (
         <>
@@ -23,10 +24,10 @@ const RestaurantMarker: FC<Props> = () => {
                                 lng: i.longitude,
                             }}
                             image={{
-                                src: `${Restaurant}`,
+                                src: `${VacationSpot}`,
                                 size: {
-                                    width: 33,
-                                    height: 45,
+                                    width: 44,
+                                    height: 55,
                                 }, // 마커이미지의 크기입니다
                             }}
                             key={`${i.latitudelat}-${i.longitude}`}
@@ -38,4 +39,4 @@ const RestaurantMarker: FC<Props> = () => {
   );
 }
 
-export default RestaurantMarker;
+export default PlaceMarker;
