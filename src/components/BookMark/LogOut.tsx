@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const LogOut = () => {
   const history = useHistory();
   const onClickHandler = () => {
-    const access_token = localStorage.removeItem('access_token');
+    localStorage.removeItem('access_token');
     history.push('/');
   };
   return (

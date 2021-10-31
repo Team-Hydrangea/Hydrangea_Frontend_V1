@@ -10,7 +10,7 @@ export const CircleBox = styled.button`
   background-color: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 50px;
-  position: absolute;
+  position: fixed;
   z-index: 4;
   transform: translateX(-1px);
   cursor: pointer;
@@ -22,7 +22,7 @@ export const CircleBox = styled.button`
 export const BookMarkOpen = styled.div`
   width: 300px;
   height: 85vh;
-  position: absolute;
+  position: fixed;
   z-index: 6;
   top: 10%;
   right: 3.5%;
@@ -108,10 +108,65 @@ export const BottomBox = styled.div`
   width: fit-content;
   height: 14px;
   margin: 0;
+  display: flex;
 `;
 
 export const AddressText = styled.span`
   font-family: Noto Sans;
   font-size: 10px;
   color: #000000;
+  margin: 0;
+`;
+
+export const StarText = styled.span`
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  color: #7184d6;
+  margin: 3px 0px 0px 1.5px;
+  cursor: pointer;
+`;
+
+export const StarBox = styled.input`
+  display: none;
+`;
+
+export const StarModal = styled.div`
+  width: 345px;
+  height: 127px;
+  background: #ffffff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-right: 1050px;
+  box-sizing: border-box;
+  display: flex;
+  z-index: 18;
+  float: left;
+  margin-top: 490px;
+  flex: 1;
+  box-sizing: border-box;
+  .star {
+    display: inline-block;
+    cursor: pointer;
+    transition: color 500ms;
+    float: left;
+    flex: 1;
+    box-sizing: border-box;
+  }
+`;
+
+export const ModalWrapper = styled.div`
+  width: 0%;
+  height: 18vh;
+  background: rgba(107, 107, 107, 0.58);
+  position: fixed;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+  margin: auto;
 `;
