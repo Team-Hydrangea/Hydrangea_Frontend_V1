@@ -1,0 +1,41 @@
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2em;
+  justify-content: space-around;
+  padding: 0 0.2em;
+  text-align: center;
+  width: 300px;
+  height: 240px;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  color: #ccc;
+  cursor: pointer;
+  margin: 0px 10px 10px 10px;
+  margin-top: 28px;
+}
+
+.star-rating :checked ~ label {
+  color: #f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #fc0;
+}
+
+article {
+  background-color: #ffe;
+  box-shadow: 0 0 1em 1px rgba(0, 0, 0, 0.25);
+  color: #006;
+  font-family: cursive;
+  font-style: italic;
+  margin: 4em;
+  width: 330px;
+  padding: 2em;
+}
