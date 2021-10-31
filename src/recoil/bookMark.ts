@@ -8,17 +8,3 @@ export const bookeMarkState = atom({
     total_pages: 0,
   },
 });
-
-type ContentArrayType = {
-  address: string;
-  detail_address: string;
-  latitude: number;
-  longitude: number;
-  number: string;
-  title: string;
-};
-
-export interface BookMarkListStateType {
-  content: Array<ContentArrayType>;
-  total_pages: number;
-}
